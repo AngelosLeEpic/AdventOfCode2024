@@ -20,10 +20,22 @@ int main(){
     }
     qsort(c1, size, sizeof(int), compare);
     qsort(c2, size, sizeof(int), compare);
+ 
+    int hashC2[100000] = {0};
+
     int sum = 0;
     for(int i = 0; i < size; i++){
         sum += abs(c1[i] - c2[i]);
+        printf("%d,%d\n", c1[i],c2[i]);
+        hashC2[c2[i]]++;
     }
-    printf("final result: %d\n", sum);
+    printf("part 1: %d\n", sum);
+    printf("starting part 2\n");
+    
+    int similarity = 0;
+    for(int i = 0; i < size; i++){
+        similarity += c1[i] * hashC2[c1[i]];
+    }
+    printf("similarity = %d\n", similarity);
 }
 
